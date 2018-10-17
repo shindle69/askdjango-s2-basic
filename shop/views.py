@@ -19,7 +19,7 @@ def item_list(request):
 
     logger.debug('query : {}'.format(q))
 
-    return render(request, 'shop/item_list.html', {
+    return render(request, 'shop/item_list.jinja', {
         'item_list': qs,
         'q': q,
     })
