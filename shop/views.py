@@ -33,9 +33,9 @@ def item_detail(request, pk):
     })
 
 
-def item_new(request):
+def item_new(request, item=None):
     error_list = []
-    values = {}
+    initial = {}
 
     if request.method == 'POST':
         data = request.POST
@@ -56,7 +56,14 @@ def item_new(request):
 
         if not error_list:
             # 저장 시도
-            item = Item(name=name, desc=desc, price=price, is_publish=is_publish)
+            if item is None:
+                item = Item()
+
+            item.name = name
+            item.desc = desc
+            item.price = price
+            item.is_publish = is_publish
+
             if photo:
                 item.photo.save(photo.name, photo, save=False)
 
@@ -67,16 +74,30 @@ def item_new(request):
             else:
                 return redirect('shop:item_list')
 
-        values = {
+        initial = {
             'name': name,
             'desc': desc,
             'price': price,
             'photo': photo,
             'is_publish': is_publish,
         }
+    else:
+        if item is not None:
+            initial = {
+                'name': item.name,
+                'desc': item.desc,
+                'price': item.price,
+                'photo': item.photo,
+                'is_publish': item.is_publish,
+            }
 
     return render(request, 'shop/item_form.html', {
         'error_list': error_list,
-        'values': values,
+        'initial': initial,
     })
+
+
+def item_edit(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    return item_new(request, item)
 

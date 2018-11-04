@@ -12,5 +12,6 @@ urlpatterns = [
     path('<int:pk>/', views.item_detail),
     # re_path(r'^(?P<pk>\d+)/$', views.item_detail),
     path('item/new/', views.item_new),
+    path('item/<int:pk>/edit/', views.item_edit),
 ]
 

@@ -17,9 +17,9 @@
                     </div>
                 {% endif %}
 
-                {% if values %}
+                {% if initial %}
                     <div class="alert alert-info">
-                        values: {{ values }}
+                        initial: {{ initial }}
                     </div>
                 {% endif %}
 
@@ -31,19 +31,19 @@
                             <tr>
                                 <th>name</th>
                                 <td>
-                                    <input type="text" name="name" value="{{ values.name }}" class="form-control" />
+                                    <input type="text" name="name" value="{{ initial.name }}" class="form-control" />
                                 </td>
                             </tr>
                             <tr>
                                 <th>desc</th>
                                 <td>
-                                    <textarea name="desc" class="form-control">{{ values.desc }}</textarea>
+                                    <textarea name="desc" class="form-control">{{ initial.desc }}</textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <th>price</th>
                                 <td>
-                                    <input type="text" name="price" value="{{ values.price }}" class="form-control" />
+                                    <input type="text" name="price" value="{{ initial.price }}" class="form-control" />
                                 </td>
                             </tr>
                             <tr>
@@ -55,7 +55,7 @@
                             <tr>
                                 <th>is_publish</th>
                                 <td>
-                                    <input type="checkbox" name="is_publish" value="1" {% if values.is_publish %}checked{% endif %} />
+                                    <input type="checkbox" name="is_publish" value="1" {% if initial.is_publish %}checked{% endif %} />
                                 </td>
                             </tr>
                         </tbody>
